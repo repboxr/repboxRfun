@@ -1,0 +1,11 @@
+Package: repboxRfun
+Type: Package
+Title: Repbox functions called by code injections into R scripts
+Version: 0.1.0
+Author: Sebastian Kranz
+Maintainer: Sebastian Kranz <sebastian.kranz@uni-ulm.de>
+Description: Try to use as little special dependencies as reasonably possible
+License: What license is it under?
+Depends: restorepoint, repboxEvaluate
+Encoding: UTF-8
+LazyData: true
