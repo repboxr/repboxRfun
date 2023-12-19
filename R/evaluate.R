@@ -1,4 +1,4 @@
-repbox_evaluate_script_chunks = function(project.dir, script_num, env=new.env(parent=globalenv()), chunk_df = NULL) {
+repbox_evaluate_script_chunks = function(project_dir, script_num, env=new.env(parent=globalenv()), chunk_df = NULL) {
   restore.point("repbox_evaluate_script_chunks")
 
   opts = getOption(".repbox.options")
@@ -7,7 +7,7 @@ repbox_evaluate_script_chunks = function(project.dir, script_num, env=new.env(pa
   }
 
   if (is.null(chunk_df)) {
-    chunk.file = paste0(project.dir, "/repbox/r/chunks/chunks_", script_num, ".Rds")
+    chunk.file = paste0(project_dir, "/repbox/r/chunks/chunks_", script_num, ".Rds")
     chunk_df=readRDS(chunk.file)
   }
 
@@ -21,10 +21,10 @@ repbox_evaluate_script_chunks = function(project.dir, script_num, env=new.env(pa
   }
 
   # Generate figures
-  figure.dir = file.path(project.dir,"repbox","r","figure")
+  figure.dir = file.path(project_dir,"repbox","r","figure")
   if (!dir.exists(figure.dir)) dir.create(figure.dir)
 
-  out.dir = paste0(project.dir, "/repbox/r/out_objects")
+  out.dir = paste0(project_dir, "/repbox/r/out_objects")
   if (!dir.exists(out.dir)) dir.create(out.dir)
   out_counter = 0
 
@@ -124,7 +124,7 @@ repbox_evaluate_script_chunks = function(project.dir, script_num, env=new.env(pa
   })
   out_df = do.call(rbind, out_li)
 
-  chunk_out_file = paste0(project.dir, "/repbox/r/chunks/out_", script_num, ".Rds")
+  chunk_out_file = paste0(project_dir, "/repbox/r/chunks/out_", script_num, ".Rds")
   saveRDS(out_df, chunk_out_file)
   invisible(out_df)
 

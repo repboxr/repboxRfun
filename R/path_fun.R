@@ -25,9 +25,9 @@ repbox.write.log.find.path = function(callid, mode, file, org.file,sup.dir, type
   cat("\nFile path ", org.file, " -> ", file, "\n")
   #return(invisible())
   opts = repbox.funs.opts()
-  project.dir = opts$project.dir
+  project_dir = opts$project_dir
   sup.dir = opts$sup.dir
-  log.file = file.path(project.dir,"repbox","r","find_path_log.csv")
+  log.file = file.path(project_dir,"repbox","r","find_path_log.csv")
 
   if(!file.exists(log.file)) return()
   log.txt = paste0(c(callid, mode, file, org.file, sup.dir,type), collapse=",")
@@ -40,7 +40,7 @@ repbox.path = function(file, mode, callid) {
   opts = repbox.funs.opts()
   wdir = getwd()
   sup.dir = opts$sup.dir
-  project.dir = opts$project.dir
+  project_dir = opts$project_dir
 
   org.file = file
   # normalize to linux convention

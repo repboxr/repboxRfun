@@ -2,13 +2,13 @@
 repbox.save.call.info = function(type,callid, subdir=type) {
   opts = repbox.funs.opts()
   counter = repbox.output.counter()
-  project.dir = opts$project.dir
+  project_dir = opts$project_dir
   sup.dir = opts$sup.dir
   scalls = sys.calls()
 
   restore.point("repbox.save.call.info")
 
-  project = basename(project.dir)
+  project = basename(project_dir)
 
   branch = normalizePath(sup.dir, mustWork=FALSE)
   if (!endsWith(branch,"/")) {
@@ -33,7 +33,7 @@ repbox.save.call.info = function(type,callid, subdir=type) {
   }
 
   res = list(info_df = data.frame(project=project,callid=callid, type=type, call=inner.call, fun=fun, rfile=rfile, counter=counter) , stack_li = stack.df)
-  saveRDS(res, file.path(project.dir,paste0("repbox/r/", subdir,"/","call_", counter,".Rds")))
+  saveRDS(res, file.path(project_dir,paste0("repbox/r/", subdir,"/","call_", counter,".Rds")))
   return(invisible(res))
 }
 

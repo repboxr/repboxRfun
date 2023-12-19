@@ -7,7 +7,7 @@ repbox.source = function(file,...) {
       stop(paste0("Could not find ", file, " under R scripts. No file is sourced."))
     }
     env = getOption(".repbox.env")
-    repbox_evaluate_script_chunks(opts$project.dir,script_num = script_num,env = env)
+    repbox_evaluate_script_chunks(opts$project_dir,script_num = script_num,env = env)
   } else if (opts$eval_mode == "spin") {
     repbox.stitch.source(file)
   } else if (opts$eval_mode == "source") {
@@ -38,12 +38,12 @@ repbox.stitch.source = function(file) {
   cat("\nWe stitch ", file,"...\n")
   opts = repbox.funs.opts()
   env = repbox.get.env()
-  project.dir = opts$project.dir
+  project_dir = opts$project_dir
 
   # Currently only knitr::spin works recursively (not knitr::stitch)
   # but for spin, we cannot specify the output file path
   # we thus copy the R file into our log directory
-  log.dir = file.path(project.dir,"repbox/r/log")
+  log.dir = file.path(project_dir,"repbox/r/log")
 
   log_files = list.files(log.dir, glob2rx("*.r"),ignore.case = TRUE)
   counter = length(log_files)+1
@@ -60,7 +60,7 @@ repbox.stitch.source = function(file) {
   if (!is.null(oldwd)) {
     setwd(oldwd)
   } else {
-    setwd(project.dir)
+    setwd(project_dir)
   }
   invisible(TRUE)
 }
