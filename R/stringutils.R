@@ -1,3 +1,8 @@
+is.true = function(x) {
+  x[is.na(x)] = FALSE
+  x
+}
+
 shorten.str = function(str,len=100, marker = "...") {
   #restore.point("shorten.str")
   if (length(str)==0) return(str)
@@ -14,8 +19,9 @@ str.left.of = function (str, pattern, ..., not.found = str)
 {
   pos = regexpr(pattern, str, fixed=TRUE)
   res = substring(str, 1, pos - 1)
-  rows = pos == -1
   if (length(not.found)<length(str)) not.found = rep(not.found, length(str))
+
+  rows = is.true(pos == -1)
   res[rows] = not.found[rows]
   res
 }
